@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import './App.css'
 import MainPanel from './components/MainPanel'
 import Sidebar from './components/Sidebar'

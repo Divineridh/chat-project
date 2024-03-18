@@ -3,14 +3,13 @@ import Leon from '../assets/leonGlasses.png'
 import Message from './Message'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
-import { render } from 'react-dom'
 import useUserStore from '../zustand/userStore'
 
 export default function MainPanel() {
 
   const {currentUser} = useUserStore()
 
-  const [data, setData] = useState([])
+  const [data, setData] = useState<Message[]>([])
 
   const fetchData = async () => {
     axios.get(`https://localhost:7201/api/users/usermessages/${currentUser}`)
@@ -25,6 +24,10 @@ export default function MainPanel() {
   useEffect(() => {
     fetchData()
   }, [currentUser])
+
+  interface Message {
+    id: number,
+  }
 
   const renderMessages = data.map(message => (
     <Message key={message.id} text="testing" />
